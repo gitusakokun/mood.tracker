@@ -50,35 +50,35 @@ if submit_btn:
     "今の気持ち：",text
 
     if weather=="晴れ" and health=="良い":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父黒.jpg")
+        img=Image.open("My project/父黒.jpg")
         st.subheader("今日はいい日だね")
         st.image(img,use_column_width=True)
     if weather=="雨" and health=="悪い":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父オレンジ.jpg")
+        img=Image.open("My project/父オレンジ.jpg")
         st.subheader("元気出せよ")
         st.image(img,use_column_width=True)
     if weather=="晴れ" and health=="悪い":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父サイズ.jpg")
+        img=Image.open("My project/父サイズ.jpg")
         st.subheader("空は晴れているけど君の心は曇っているみたいだね")
         st.image(img,use_column_width=True)
     if weather=="雨" and health=="良い":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父ピース.jpg")
+        img=Image.open("My project/父ピース.jpg")
         st.subheader("雨だけど気分がいいなんて、素敵だね")
         st.image(img,use_column_width=True)
     if health=="普通":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父あさちゃん.jpg")
+        img=Image.open("My project/父あさちゃん.jpg")
         st.subheader("なんでもない日が実は一番大切なんだよ")
         st.image(img,use_column_width=True)
     if health =="わからない":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父ジョンレノン.jpg")
+        img=Image.open("My project/父ジョンレノン.jpg")
         st.subheader("自分の気持ちが分からないときは、俺に聴いてみな") 
         st.image(img,use_column_width=True)      
     if weather=="くもり" and health=="良い":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父広げる.jpg")
+        img=Image.open("My project/父広げる.jpg")
         st.subheader("心はすっきり晴れているみたいだね、やるじゃないか")
         st.image(img,use_column_width=True)
     if weather=="くもり" and health=="悪い":
-        img=Image.open(r"C:\Users\nagis\OneDrive\デスクトップ\streamlit\父あさちゃん目.jpg")
+        img=Image.open("My project/父あさちゃん目.jpg")
         st.subheader("微妙な日みたいだけどちゃんとご飯を食べてえらい！")
         st.image(img,use_column_width=True)
 
