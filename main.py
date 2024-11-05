@@ -5,6 +5,41 @@ import pandas as pd
 from datetime import datetime
 import os
 
+users_db = {
+    "user1": "password1",
+    "user2": "password2",
+    "user3": "password3"
+}
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+    st.session_state.username = ""
+
+
+def login_page():
+    st.title("ログイン")
+    username = st.text_input("ユーザー名")
+    password = st.text_input("パスワード", type="password")
+    
+    if st.button("ログイン"):
+        if username in users_db and users_db[username] == password:
+            st.session_state.logged_in = True
+            st.session_state.username = username
+            st.success(f"ようこそ、{username}さん！")
+        else:
+            st.error("ユーザー名またはパスワードが間違っています")
+
+def home_page():
+    st.title(f"ようこそ、{st.session_state.username}さん！")
+    data_file = f"{st.session_state.username}_daily_mood_data.csv"
+
+    if "history" not in st.session_state:
+        if os.path.exists(data_file):
+            st.session_state.history = pd.read_csv(data_file)
+        else:
+            st.session_state.history = pd.DataFrame(columns=["日付", "合計"])
+
+
 st.title("きのこ")
 
 st.caption("質問に答える")
@@ -100,7 +135,10 @@ if submit_btn:
 
     st.line_chart(st.session_state.history.set_index("日付")["合計"])
 
-
+if not st.session_state.logged_in:
+    login_page()
+else:
+    home_page()
     
     # if health1 =="良い":
     #     health1_number=100
