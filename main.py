@@ -52,7 +52,7 @@ def home_page():
     submit_btn = st.button("送信")
     
     if submit_btn:
-        # 送信ボタンが押された時、データを履歴に追加
+        # 送信ボタンが押された時、データを履歴に追加または更新
         current_date = datetime.now().strftime("%Y-%m-%d")
         new_data = pd.DataFrame({
             "日付": [current_date],
@@ -63,7 +63,12 @@ def home_page():
             "コメント": [text]
         })
         
-        st.session_state.history = pd.concat([st.session_state.history, new_data], ignore_index=True)
+        # 既存のデータをチェックし、同じ日付があれば上書き
+        if current_date in st.session_state.history["日付"].values:
+            st.session_state.history.loc[st.session_state.history["日付"] == current_date, ["天気", "体調", "気持ち", "コンディション", "コメント"]] = new_data.iloc[0, 1:].values
+        else:
+            # 同じ日付がなければ新しいデータとして追加
+            st.session_state.history = pd.concat([st.session_state.history, new_data], ignore_index=True)
         
         # 履歴をCSVに保存
         st.session_state.history.to_csv(data_file, index=False)
